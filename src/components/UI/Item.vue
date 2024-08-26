@@ -2,7 +2,7 @@
     <div
         class="tag-item"
         :key="item"
-        @click="handleClick()"
+        @click="handleClick"
         :class="{ isPreview: isPreview, isActive: !isPreview && isActiveClass }"
         >
         <span>{{ item }}</span>
@@ -19,7 +19,7 @@ export default {
   methods: {
     handleClick() {
       this.isActiveClass = !this.isActiveClass
-    }
+    },
   },
   props: {
     item: {

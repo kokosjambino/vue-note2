@@ -23,20 +23,20 @@ export default {
     onSubmit() {
       const value = this.value
       const selectTags = this.selectTag
-      this.$emit('onSubmit', {value, selectTags})
-      this.selectTag = []
+      this.$store.dispatch('setNote',{value,selectTags})
       this.value = ''
+      // this.selectTag = []
     },
     handleTagClick(tag) {
       const includesTag = this.selectTag.includes(tag)
       if(includesTag) {
-        this.selectTag.filter((select) => {
-          select !== tag
+        this.selectTag = this.selectTag.filter((select) => {
+          return select !== tag
         })
       } else {
         this.selectTag.push(tag)
       }
-    }
+    },
   }
 }
 </script>

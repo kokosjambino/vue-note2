@@ -3,7 +3,10 @@
     <div class="note-item" v-for="(note, index) in items" :key="index">
       <div class="note-header">
         <p>{{ note.title }}</p>
-        <p style="cursor: pointer;" @click="$emit('onRemove', index)">
+        <p style="cursor: pointer;" 
+        @click="handleRemove(index)"
+        >
+        
           &#10005;
         </p>
       </div>
@@ -22,10 +25,14 @@
 import TagsList from '@/components/UI/TagsList.vue'
 export default {
   components: { TagsList },
-  props: {
-    items: {
-      type: Array,
-      required: true
+  computed: {
+    items() {
+      return this.$store.getters.getNotes
+    },
+  },
+  methods: {
+    handleRemove(index) {
+      this.$store.dispatch('removeNote',index)
     }
   }
 }
